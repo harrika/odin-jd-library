@@ -21,6 +21,13 @@ function setup() {
   button.position(inputPages.x + inputPages.width+10, 125);
   button.mousePressed(saveit);
 
+  authorhd = createElement('strong','Author: ');
+  authorhd.position(120,180);
+  titlehd = createElement('strong','Title: ');
+  titlehd.position(270,180);
+  pageshd = createElement('strong','Pages: ');
+  pageshd.position(550,180);
+
   textAlign(CENTER);
   textSize(50);
 }
@@ -55,7 +62,7 @@ function placeit() {
   lib.forEach(listing);
 }
 
-var ypos = [190];
+var ypos = [200];
 function listing(buk, index) {
     var zz = Math.max.apply(Math, ypos);
     zz = zz + (25*index);
@@ -82,7 +89,8 @@ function listing(buk, index) {
       tpages.remove();
       delbutt.remove();    
       ypos.push(zz);   
-      alert(zz);
+      clear();
+      //alert(zz);
     }     
 }
 
