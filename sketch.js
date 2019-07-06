@@ -51,30 +51,39 @@ function saveit() {
   placeit();
   } 
 
-function placeit() {
+function placeit() {  
   lib.forEach(listing);
 }
 
+var ypos = [190];
 function listing(buk, index) {
-	var zz = 170+25*index;  	
-  	tauthor = createElement('strong',buk.author);
-  	tauthor.position(120, zz);
-  	ttitle = createElement('strong',buk.title);
+    var zz = Math.max.apply(Math, ypos);
+    zz = zz + (25*index);
+
+  	tauthor = createElement('strong',buk.author);  
+    tauthor.position(120, zz);  
+ 
+   	ttitle = createElement('strong',buk.title);
   	ttitle.position(270, zz);
+ 
   	tpages = createElement('strong',buk.pages);
   	tpages.position(550, zz);  
-  	index = createButton('delete');
-  	index.position(600,zz);
-   	index.mousePressed(del);
-   	
-   	
+    ypos.push(zz);
+ 
+  	delbutt = createButton('delete');
+  	delbutt.position(600,zz);
+   	delbutt.mousePressed(ddd);  
+
+    function ddd() {
+      const pp = lib.indexOf(buk);
+      lib.splice(pp,1);
+      tauthor.remove();
+      ttitle.remove();
+      tpages.remove();
+      delbutt.remove();    
+      ypos.push(zz);   
+      alert(zz);
+    }     
 }
 
-function del() {
-  		lib.splice(self.index,1);
-  	}
 
-
-  // 	 if pages == NaN {
-  // 	alert('integer required for number of pages')
-  // }
