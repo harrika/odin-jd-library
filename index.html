@@ -1,17 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>book library</title>
+
+  <meta charset="utf-8">
+  <title>The library project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<div class="container">
+	<h5>Library One</h5>
+	<h5>Enter book details:</h5>
+
+	    <div class="row">
+	       <form>
+	       <div class="three columns">
+	          <label for="authorIn">Author</label>
+	          <input class="u-full-width" type="text" placeholder="author" id="authorIn">
+	        </div>
+
+			<div class="three columns">
+	          <label for="titleIn">Title</label>
+	          <input class="u-full-width" type="text" placeholder="Enter Title" id="titleIn">
+	    	</div>
+
+			<div class="three columns">
+	          <label for="pagesIn">No. pages</label>
+	          <input class="u-full-width" type="text" placeholder="No. of pages" id="pagesIn">
+	        </div>
+
+
+	        <div class="three columns">
+	          <label for="red">Read status</label>
+	          <select class="u-full-width" id="redIn">
+	            <option value="Read">Read</option>
+	            <option value="Not read">Not yet read</option>
+	          </select>
+	        </div>
+
+		    <button type="submit" class="button-primary" id="adder">Add Book</button>
+		    </form>
+	    </div><!-- ending row -->
+	    <hr>
+
+
+
+	    <div class="row">
+	    	<table class="u-full-width" id="dtable">
+	   	      <tbody id="tb">
+	    	  	    	   
+	    	  </tbody>
+	    	</table>
+	    </div>
+
+
+	    </div><!-- ending container -->
+	    
 	
-
-
-
-	<script src="p5.js"></script>
-	<script src="p5.dom.js"></script>
-	<script src="sketch.js"></script>
+	<script src="js/script.js"></script>
 
 </body>
 </html>
-
