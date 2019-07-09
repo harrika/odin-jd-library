@@ -1,9 +1,8 @@
 		var lib = [];
-		var sti = ["Read", "Not Read"];
-		iid= 0
+		var iid = 0;
 		document.querySelector('#adder').addEventListener('click', addtolib);
 
-		//seetup hte Book object
+		//setup a Book object
 		function Book(title, author, pages, status, id) {
 		    this.id = id;
 		    this.title = title;
@@ -19,7 +18,6 @@
 			} else {
 				this.status = "Read";
 			}	
-			//console.log(this.status);
 			cleardrow(lib); 
 		}
 
@@ -29,13 +27,13 @@
 		    var aauthor = document.querySelector('#authorIn').value;
 		    var ppages = document.querySelector('#pagesIn').value;
 		    var sstatus = document.querySelector('#redIn').value; 
-		    iid += 1;		   
+		    iid += 1;
 		    var book = new Book(ttitle, aauthor, ppages, sstatus, iid);
 		    lib.push(book);
 		    cleardrow(lib); 		    
 		    }
 
-		 //The function clears hten adds book rows to the DOM
+		 //The function clears then adds book rows to the DOM
 		 function cleardrow(lb) {
 		 	delros();
 		 	lb.forEach(bb => {
@@ -51,14 +49,7 @@
 		 	}
 		 }
 
-		  //removes a book fro hte library
-		  function dell() {
-		  	var pp = lib.indexOf(this);	
-		 	lib.splice(pp,1);
-		 	cleardrow(lib);		  	
-		  }
-		
-		 //adding a book row to the DOM
+		 			 //adding a book row to the DOM
 		 function addbkro(bk) {
 				var tebody = document.querySelector('#tb');	
 		 	   	var terow = document.createElement('tr');
@@ -68,41 +59,26 @@
 		 			<td>${bk.author}</td>
 		 			<td>${bk.pages}</td>
 		<td><input type="button" onclick="stati(${bk.id})" value="${bk.status}"> </td>
-		<td><input type="button" onclick="dell()" value="delete"> </td>
+		<td><input type="button" onclick="dell(${bk.id})" value="delete"> </td>
 		 		`;
 		 	    tebody.append(terow);
 		 }
 
-		 // window.onload=function(){
-		 // 	var statbtn = document.querySelector('#stat');
-		 // 	statbtn.addEventListener('click', function(e) {
-		 // 	var target = e.target;
-		 // 	console.log(target)
-		 // 	});
-		 // }
-
-		 function stati(d) {
-		 	// alert(d);
-		 	const i = lib.findIndex(function(bk, i) {
+		//changes read status upon cliking
+		function stati(d) {
+			const i = lib.findIndex(function(bk, i) {
 		 		return bk.id === d;
 		 	})
-		 	const buk = lib[i];
-		 	buk.togglestat();		 	
-
-		 	// alert(buk.status);
-		 	// if buk.status == "Read" {
-		 	// 	buk.togglestat(0);
-		 	// } else {
-		 	// 	buk.togglestat(0);
-		 	// }
-		 
-
+		const buk = lib[i];
+		buk.togglestat();		
 		 }
 
-// ===================================================
-// how to procedd
-// get bk.id from click
-// find book with such id in library  lib
-// delete bk
-// or change status of book
-// ======================================================
+		 //removes a book from the Library
+		 function dell(hh) {
+			const pp = lib.findIndex(function(bk, pp) {
+				return bk.id === hh;
+			})
+		 	lib.splice(pp,1);
+		 	cleardrow(lib);		  	
+		  }
+
