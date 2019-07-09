@@ -19,33 +19,42 @@
 
 	    <div class="row">
 	       <form>
-	       <div class="three columns">
+	    <!--    <div class="one column">
+	          <label for="id">ID</label>
+	        </div> -->
+
+  			<div class="three columns">
 	          <label for="authorIn">Author</label>
 	          <input class="u-full-width" type="text" placeholder="author" id="authorIn">
 	        </div>
 
-			<div class="three columns">
+			<div class="five columns">
 	          <label for="titleIn">Title</label>
-	          <input class="u-full-width" type="text" placeholder="Enter Title" id="titleIn">
+	      	<input class="u-full-width" type="text" placeholder="Enter Title" id="titleIn">
 	    	</div>
 
-			<div class="three columns">
-	          <label for="pagesIn">No. pages</label>
-	          <input class="u-full-width" type="text" placeholder="No. of pages" id="pagesIn">
+			<div class="two columns">
+	          <label for="pagesIn">pages</label>
+	          <input class="u-full-width" type="text" placeholder="pages" id="pagesIn">
 	        </div>
 
 
-	        <div class="three columns">
-	          <label for="red">Read status</label>
+	        <div class="two columns">
+	          <label for="red">status</label>
+
 	          <select class="u-full-width" id="redIn">
 	            <option value="Read">Read</option>
-	            <option value="Not Read">Not yet read</option>
+	            <option value="Not Read">Not read</option>
 	          </select>
 	        </div>
-
-		    <button type="submit" class="button-primary" id="adder">Add Book</button>
+	        
 		    </form>
+
 	    </div><!-- ending row -->
+	    <div class="row">
+		    <button type="submit" class="button-primary" id="adder">Add Book</button>
+	    </div>
+
 	    <hr>
 
 
