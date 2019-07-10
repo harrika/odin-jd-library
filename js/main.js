@@ -13,7 +13,8 @@
 
 		//method to toggle the book read status
 		Book.prototype.togglestat = function() {
-			if (this.status == "Read") {
+		// Can be turned into a brief tertiary operation - I know
+			if  (this.status == "Read") {
 				(this.status = "Not Read")
 			} else {
 				this.status = "Read";
@@ -21,6 +22,7 @@
 			cleardrow(lib); 
 		}
 
+		//Get inputs, create a book, add to library and add it to the DOM 
 		function addtolib(e) {
 		    e.preventDefault();
 		    var ttitle = document.querySelector('#titleIn').value;
@@ -41,7 +43,7 @@
 		 	});
 		 }
 
-		 //clears rows from table DOM	
+		 //clears table rows from the DOM - called by cleardrow	
 		 function delros() {
 			var tebo = document.querySelector('#dtable');	
 		 	while(tebo.rows.length > 0) {
@@ -49,7 +51,7 @@
 		 	}
 		 }
 
-		 			 //adding a book row to the DOM
+		 //adding a book row to the DOM - called by cleardrow
 		 function addbkro(bk) {
 				var tebody = document.querySelector('#tb');	
 		 	   	var terow = document.createElement('tr');
@@ -58,7 +60,7 @@
 		 			<td>${bk.title}</td>
 		 			<td>${bk.author}</td>
 		 			<td>${bk.pages}</td>
-		<td><input type="button" onclick="stati(${bk.id})" value="${bk.status}"> </td>
+		<td><input type="button" onclick="stati(${bk.id})" value="${bk.status}"></td>
 		<td><input type="button" onclick="dell(${bk.id})" value="delete"> </td>
 		 		`;
 		 	    tebody.append(terow);
@@ -81,4 +83,3 @@
 		 	lib.splice(pp,1);
 		 	cleardrow(lib);		  	
 		  }
-
