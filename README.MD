@@ -1,6 +1,8 @@
 # The ODIN Project
 ## The  Library project - javascript
-This project is still undergoing finetuning but is operational
+A PROJECT to build a book librabry implemeneted using CSS and plain Javascript
+Henry M. Kirya
+
 
 
 
