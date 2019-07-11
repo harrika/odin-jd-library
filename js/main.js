@@ -1,85 +1,117 @@
-		var lib = [];
-		var iid = 0;
-		document.querySelector('#adder').addEventListener('click', addtolib);
 
-		//setup a Book object
-		function Book(title, author, pages, status, id) {
-		    this.id = id;
-		    this.title = title;
-		    this.author = author;
-		    this.pages = pages;
-		    this.status = status;
+//The book class
+class Book {
+	constructor (title, author, pages, status, id) {
+	    this.id = id;
+	    this.title = title;
+	    this.author = author;
+	    this.pages = pages;
+	    this.status = status;
+	}
+
+	togglestat() {
+		if  (this.status == "Read") {
+			(this.status = "Not Read")
+		}else {
+			this.status = "Read";
+		}	
+		// this.cleardrow(lib); 
+	}
+}
+
+// The Canvas class initialises a library
+class Canvas {
+	constructor(library){
+		this.library = library;
+	}
+
+	//adds book to library, clears page and adds to page
+	addaBook(bk) {
+		this.library.push(bk);
+		this.clearPage(); 
+		this.adder(lib); 
+	}
+
+	//get inputs, createa new book and add it
+	addtolib(e) {
+		var ttitle = document.querySelector('#titleIn').value;
+		var aauthor = document.querySelector('#authorIn').value;
+		var ppages = document.querySelector('#pagesIn').value;
+		var sstatus = document.querySelector('#redIn').value; 
+		iid += 1;
+		var newbook = new Book(ttitle, aauthor, ppages, sstatus, iid);
+		this.addaBook(newbook);
+	}
+
+	//changes read status upon clicking status button
+	stati(d) {
+		const i = lib.findIndex(function(bk, i) {
+	 		return bk.id === d;
+	 	})
+	 	const buk = lib[i];
+	 	buk.togglestat();	
+	 	this.clearPage(); 
+		this.adder(lib); 	
+	 }
+
+	//deletes book from library, clears page and adds to page
+	deleBook(rowid) {
+		const pp = lib.findIndex(function(bk, pp) {
+			return bk.id === rowid;
+		})
+		lib.splice(pp,1);
+		this.clearPage(); 
+		this.adder(lib); //add lib to page ==============>
+	}
+
+	//clears the page
+	clearPage() {
+		var tebo = document.querySelector('#dtable');	
+		while(tebo.rows.length > 0) {
+			 tebo.deleteRow(0);
 		}
+	}
 
-		//method to toggle the book read status
-		Book.prototype.togglestat = function() {
-		// Can be turned into a brief tertiary operation - I know
-			if  (this.status == "Read") {
-				(this.status = "Not Read")
-			} else {
-				this.status = "Read";
-			}	
-			cleardrow(lib); 
-		}
+	adder(lb) {
+		lb.forEach(bb => {
+			this.addtoPage(bb);
+		});
+	}
 
-		//Get inputs, create a book, add to library and add it to the DOM 
-		function addtolib(e) {
-		    e.preventDefault();
-		    var ttitle = document.querySelector('#titleIn').value;
-		    var aauthor = document.querySelector('#authorIn').value;
-		    var ppages = document.querySelector('#pagesIn').value;
-		    var sstatus = document.querySelector('#redIn').value; 
-		    iid += 1;
-		    var book = new Book(ttitle, aauthor, ppages, sstatus, iid);
-		    lib.push(book);
-		    cleardrow(lib); 		    
-		    }
+	//adds a book to the page
+	addtoPage(buuk) {
+		var tebody = document.querySelector('#tb');	
+		var terow = document.createElement('tr');
+		terow.innerHTML = `
+			<td>${buuk.id}</td>
+			<td>${buuk.author}</td>
+			<td>${buuk.title}</td>
+			<td>${buuk.pages}</td>
+			<td><input type="button" onclick="statchange(${buuk.id})"
+				value="${buuk.status}"></td>
+			<td><input type="button" onclick="dell(${buuk.id})"
+				value="delete"> </td>
+			`;
+		 tebody.append(terow);
+	}
+}
 
-		 //The function clears then adds book rows to the DOM
-		 function cleardrow(lb) {
-		 	delros();
-		 	lb.forEach(bb => {
-		 		addbkro(bb);
-		 	});
-		 }
+var lib = [];
+var iid = 0;
+let libone = new Canvas(lib);
+document.querySelector('#adder').addEventListener('click', addtolibc);
 
-		 //clears table rows from the DOM - called by cleardrow	
-		 function delros() {
-			var tebo = document.querySelector('#dtable');	
-		 	while(tebo.rows.length > 0) {
-		 		 tebo.deleteRow(0);
-		 	}
-		 }
+function addtolibc(e) {
+	e.preventDefault();
+	libone.addtolib();
+}
 
-		 //adding a book row to the DOM - called by cleardrow
-		 function addbkro(bk) {
-				var tebody = document.querySelector('#tb');	
-		 	   	var terow = document.createElement('tr');
-		 		terow.innerHTML = `
-		 			<td>${bk.id}</td>
-		 			<td>${bk.title}</td>
-		 			<td>${bk.author}</td>
-		 			<td>${bk.pages}</td>
-		<td><input type="button" onclick="stati(${bk.id})" value="${bk.status}"></td>
-		<td><input type="button" onclick="dell(${bk.id})" value="delete"> </td>
-		 		`;
-		 	    tebody.append(terow);
-		 }
+function dell(rwid) {
+	libone.deleBook(rwid);	
+}
 
-		//changes read status upon cliking
-		function stati(d) {
-			const i = lib.findIndex(function(bk, i) {
-		 		return bk.id === d;
-		 	})
-		const buk = lib[i];
-		buk.togglestat();		
-		 }
+function statchange(id) {
+	libone.stati(id);	
+}
 
-		 //removes a book from the Library
-		 function dell(hh) {
-			const pp = lib.findIndex(function(bk, pp) {
-				return bk.id === hh;
-			})
-		 	lib.splice(pp,1);
-		 	cleardrow(lib);		  	
-		  }
+
